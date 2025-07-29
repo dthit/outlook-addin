@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<OfficeApp 
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
   xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
   xsi:type="MailApp">
 
-  <!-- Basisinformationen -->
   <Id>a1b2c3d4-e5f6-7890-abcd-123456789012</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Ihr Unternehmen</ProviderName>
@@ -17,33 +16,28 @@
   <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/80x80.png"/>
   <SupportUrl DefaultValue="https://dthit.github.io/outlook-addin/"/>
 
-  <!-- Ziel-Host -->
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
 
-  <!-- Anforderungen -->
   <Requirements>
     <Sets>
       <Set Name="Mailbox" MinVersion="1.1"/>
     </Sets>
   </Requirements>
 
-  <!-- Formularanzeige -->
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://dthit.github.io/outlook-addin/Taskpane.html"/>
+        <SourceLocation DefaultValue="https://dthit.github.io/outlook-addin/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
   </FormSettings>
 
-  <!-- Berechtigungen -->
   <Permissions>Restricted</Permissions>
 
-  <!-- Versionsüberschreibungen -->
-  <VersionOverrides 
+  <VersionOverrides
     xmlns="http://schemas.microsoft.com/office/mailappversionoverrides"
     xsi:type="VersionOverridesV1_0">
 
@@ -57,7 +51,7 @@
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
 
-          <!-- Lesemodus -->
+          <!-- LESEN -->
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
             <CustomTab id="CustomTabRead">
               <Group id="CustomGroupRead">
@@ -82,7 +76,7 @@
             </CustomTab>
           </ExtensionPoint>
 
-          <!-- Erstellmodus -->
+          <!-- SCHREIBEN -->
           <ExtensionPoint xsi:type="MessageComposeCommandSurface">
             <CustomTab id="CustomTabCompose">
               <Group id="CustomGroupCompose">
@@ -113,7 +107,6 @@
       </Host>
     </Hosts>
 
-    <!-- Ressourcen -->
     <Resources>
       <bt:Images>
         <bt:Image id="Icon.16x16" DefaultValue="https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/Mail/SVG/ic_fluent_mail_16_filled.svg"/>
@@ -135,5 +128,12 @@
         <bt:String id="MailtoButton.Tooltip" DefaultValue="Öffnet eine neue E-Mail an den Support"/>
       </bt:LongStrings>
     </Resources>
+
+    <!-- Notwendig für ExecuteFunction -->
+    <ExtensionPoint xsi:type="Events">
+      <Event Type="MessageReadCommandSurface" FunctionName="openMailto"/>
+      <Event Type="MessageComposeCommandSurface" FunctionName="openMailto"/>
+    </ExtensionPoint>
+
   </VersionOverrides>
 </OfficeApp>
