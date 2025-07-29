@@ -33,7 +33,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://dthit.github.io/outlook-addin/taskpane.html"/>
+        <SourceLocation DefaultValue="https://dthit.github.io/outlook-addin/Taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
