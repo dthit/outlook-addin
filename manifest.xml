@@ -15,7 +15,7 @@
   <Description DefaultValue="Erstellt eine neue E-Mail an eine spezifische Adresse"/>
   <IconUrl DefaultValue="https://via.placeholder.com/32x32.png"/>
   <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/80x80.png"/>
-  <SupportUrl DefaultValue="https://servicedesk.dth-tiemann.local/outlook-addin/"/>
+  <SupportUrl DefaultValue="https://dthit.github.io/outlook-addin/"/>
 
   <!-- Ziel-Host -->
   <Hosts>
@@ -33,7 +33,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://servicedesk.dth-tiemann.local/outlook-addin/taskpane.html"/>
+        <SourceLocation DefaultValue="https://dthit.github.io/outlook-addin/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -122,7 +122,7 @@
       </bt:Images>
 
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://servicedesk.dth-tiemann.local/outlook-addin/commands.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://dthit.github.io/outlook-addin/commands.html"/>
       </bt:Urls>
 
       <bt:ShortStrings>
