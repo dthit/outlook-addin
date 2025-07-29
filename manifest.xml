@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp 
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+  xsi:type="MailApp">
+
+  <!-- Basisinformationen -->
+  <Id>a1b2c3d4-e5f6-7890-abcd-123456789012</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Ihr Unternehmen</ProviderName>
+  <DefaultLocale>de-DE</DefaultLocale>
+  <DisplayName DefaultValue="Custom Mail Button"/>
+  <Description DefaultValue="Erstellt eine neue E-Mail an eine spezifische Adresse"/>
+  <IconUrl DefaultValue="https://via.placeholder.com/32x32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/80x80.png"/>
+  <SupportUrl DefaultValue="https://servicedesk.dth-tiemann.local/outlook-addin/"/>
+
+  <!-- Ziel-Host -->
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <!-- Anforderungen -->
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+
+  <!-- Formularanzeige -->
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://servicedesk.dth-tiemann.local/outlook-addin/taskpane.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <!-- Berechtigungen -->
+  <Permissions>Restricted</Permissions>
+
+  <!-- Versionsüberschreibungen -->
+  <VersionOverrides 
+    xmlns="http://schemas.microsoft.com/office/mailappversionoverrides"
+    xsi:type="VersionOverridesV1_0">
+
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+
+          <!-- Lesemodus -->
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <CustomTab id="CustomTabRead">
+              <Group id="CustomGroupRead">
+                <Label resid="CustomGroup.Label"/>
+                <Control xsi:type="Button" id="MailtoButtonRead">
+                  <Label resid="MailtoButton.Label"/>
+                  <Supertip>
+                    <Title resid="MailtoButton.Label"/>
+                    <Description resid="MailtoButton.Tooltip"/>
+                  </Supertip>
+                  <Icons>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icons>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openMailto</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="CustomTab.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+
+          <!-- Erstellmodus -->
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <CustomTab id="CustomTabCompose">
+              <Group id="CustomGroupCompose">
+                <Label resid="CustomGroup.Label"/>
+                <Control xsi:type="Button" id="MailtoButtonCompose">
+                  <Label resid="MailtoButton.Label"/>
+                  <Supertip>
+                    <Title resid="MailtoButton.Label"/>
+                    <Description resid="MailtoButton.Tooltip"/>
+                  </Supertip>
+                  <Icons>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icons>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openMailto</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="CustomTab.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+
+          <!-- Funktionsdatei -->
+          <FunctionFile resid="Commands.Url"/>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <!-- Ressourcen -->
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/Mail/SVG/ic_fluent_mail_16_filled.svg"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/Mail/SVG/ic_fluent_mail_32_filled.svg"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/Mail/SVG/ic_fluent_mail_48_filled.svg"/>
+      </bt:Images>
+
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://servicedesk.dth-tiemann.local/outlook-addin/commands.html"/>
+      </bt:Urls>
+
+      <bt:ShortStrings>
+        <bt:String id="CustomTab.Label" DefaultValue="Custom"/>
+        <bt:String id="CustomGroup.Label" DefaultValue="Aktionen"/>
+        <bt:String id="MailtoButton.Label" DefaultValue="Support E-Mail"/>
+      </bt:ShortStrings>
+
+      <bt:LongStrings>
+        <bt:String id="MailtoButton.Tooltip" DefaultValue="Öffnet eine neue E-Mail an den Support"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
