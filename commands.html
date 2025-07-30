@@ -1,75 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Custom Commands</title>
-
-    <!-- Office JavaScript API -->
-    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-</head>
-
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script>
-        // Office Add-in Initialisierung
-        Office.onReady(() => {
-            console.log('Office Add-in bereit');
-        });
+      Office.onReady(() => {
+        // Office-Add-In ist bereit
+      });
 
-        // Globale Funktionen für ExecuteFunction
-        window.openMailto = function(event) {
-            // Hier können Sie die gewünschte E-Mail-Adresse anpassen
-            const emailAddress = "support@ihrunternehmen.de";
-            const subject = "Support Anfrage";
-            const body = "Hallo Support-Team,%0D%0A%0D%0A"; // %0D%0A sind Zeilenumbrüche
-            
-            // Mailto URL erstellen
-            const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${body}`;
-            
-            try {
-                // Neue E-Mail in Outlook öffnen
-                if (Office.context.mailbox && Office.context.mailbox.displayNewMessageForm) {
-                    // Outlook Web/Desktop API verwenden
-                    Office.context.mailbox.displayNewMessageForm({
-                        toRecipients: [{
-                            displayName: "Support Team",
-                            emailAddress: emailAddress
-                        }],
-                        subject: subject,
-                        htmlBody: "Hallo Support-Team,<br><br>"
-                    });
-                } else {
-                    // Fallback: Browser Mailto verwenden
-                    window.open(mailtoUrl, '_blank');
-                }
-                
-                // Event als erledigt markieren
-                if (event && event.completed) {
-                    event.completed();
-                }
-            } catch (error) {
-                console.error('Fehler beim Öffnen der E-Mail:', error);
-                // Fallback
-                window.open(mailtoUrl, '_blank');
-                if (event && event.completed) {
-                    event.completed();
-                }
-            }
-        };
+      function openMailto(event) {
+        window.open("mailto:hans@peter.de", "_blank");
+        event.completed(); // sagt Outlook, dass die Aktion abgeschlossen ist
+      }
 
-        // Alternative globale Funktion für einfachen Mailto-Link
-        window.openSimpleMailto = function(event) {
-            const emailAddress = "support@ihrunternehmen.de";
-            const subject = "Support Anfrage";
-            
-            const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}`;
-            window.open(mailtoUrl, '_blank');
-            
-            if (event && event.completed) {
-                event.completed();
-            }
+      // Exportieren, falls benötigt (für Browser-Kompatibilität)
+      if (typeof module !== "undefined") {
+        module.exports = {
+          openMailto
         };
+      }
     </script>
-</body>
+  </head>
+  <body></body>
 </html>
