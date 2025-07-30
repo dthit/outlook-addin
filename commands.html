@@ -5,19 +5,12 @@
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script>
       Office.onReady(() => {
-        // Office-Add-In ist bereit
+        // Add-in ready
       });
 
       function openMailto(event) {
         window.open("mailto:hans@peter.de", "_blank");
-        event.completed(); // sagt Outlook, dass die Aktion abgeschlossen ist
-      }
-
-      // Exportieren, falls benötigt (für Browser-Kompatibilität)
-      if (typeof module !== "undefined") {
-        module.exports = {
-          openMailto
-        };
+        event.completed(); // Wichtig: Sag Outlook, dass du fertig bist!
       }
     </script>
   </head>
